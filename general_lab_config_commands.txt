@@ -1,0 +1,28 @@
+set hostname:
+Router(config)#hostname R1
+
+enable ssh:
+R1(config)#ip domain-name home.lab
+R1(config)#crypto key generate rsa
+R1(config)#username vmware secret VMware1!
+R1(config)#line vty 0 4
+R1(config-line)#transport input ssh
+R1(config-line)#ip ssh version 2
+R1(config-line)#login local
+R2(config-line)#logging synchronous (cli log output does not interfere with existing cli)
+
+
+Loopback interfaces:
+R1(config)#interface loopback 1 
+R1(config-if)#
+*Mar  1 00:52:58.127: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback1, changed state to up
+R1(config-if)#ip address 1.1.1.1 255.255.255.255
+R1(config-if)#no shut
+
+
+Turn a switchport into a routed port:
+R1(config)#interface loopback 1 
+R1(config-if)#
+*Mar  1 00:52:58.127: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback1, changed state to up
+R1(config-if)#ip address 1.1.1.1 255.255.255.255
+R1(config-if)#no shut
