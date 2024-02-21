@@ -1,0 +1,241 @@
+Implementing Cisco Enterprise Advanced Routing and Services v1.1 (300-410)
+ Exam Description: 
+
+Implementing Cisco Enterprise Advanced Routing and Services v1.1 (ENARSI 300- 410) 
+ 35% 1.0 Layer 3 Technologies
+1.1 Troubleshoot administrative distance (all routing protocols)
+chapter 1 (starting on page 39 – book : 79 - PDF)
+
+1.2 Troubleshoot route map for any routing protocol (attributes, tagging, filtering)
+chapter 17
+
+1.3 Troubleshoot loop prevention mechanisms (filtering, tagging, split horizon, route poisoning)
+chapter 13 
+
+1.4 Troubleshoot redistribution between any routing protocols or routing sources
+chapter 16, 17
+
+1.5 Troubleshoot manual and auto-summarization with any routing protocol
+chapter 3,4,5,7,8,9,10,12
+
+1.6 Configure and verify policy-based routing
+chapter 15
+
+1.7 Configure and verify VRF-Lite
+chapter 18
+
+1.8 Describe Bidirectional Forwarding Detection
+chapter 23
+
+1.9 Troubleshoot EIGRP (classic and named mode; VRF and global)
+chapter 4, 5
+
+1.9.a Address families (IPv4, IPv6) 
+chatper 2,3,4,5
+
+1.9.b Neighbor relationship and authentication 
+chapter 2,4,5
+
+1.9.c Loop-free path selections (RD, FD, FC, successor, feasible successor, stuck in active)
+chapter 3,4
+
+1.9.d Stubs
+chapter 4
+
+1.9.e Load balancing (equal and unequal cost) 
+chapter 2
+
+1.9.f Metrics 
+chapter 2
+
+1.10 Troubleshoot OSPF (v2/v3)
+chapter 6,7,8,9,10
+
+1.10.a Address families (IPv4, IPv6) 
+chapter 8, 10
+
+1.10.b Neighbor relationship and authentication 
+chapter 6,8,10
+
+1.10.c Network types, area types, and router types
+chapter 8,10
+
+1.10.c.i Point-to-point, multipoint, broadcast, nonbroadcast
+chapter 6,8,10
+
+1.10.c.ii Area type: backbone, normal, transit, stub, NSSA, totally stub
+chapter 7,8,10
+
+1.10.c.iii Internal router, backbone router, ABR, ASBR
+chapter 6,8,10
+
+1.10.c.iv Virtual link
+chapter 7,8
+
+1.10.d Path preference
+chapter 7
+
+1.11 Troubleshoot BGP (Internal and External, unicast, and VRF-Lite)
+chapter 11,12,13,14
+
+
+2023 Cisco Systems, Inc. This document is Cisco Confidential. Page 2 
+
+1.11.a Address families (IPv4, IPv6) 
+10, 14 
+
+1.11.b Neighbor relationship and authentication (next-hop, mulithop, 4-byte AS, private AS, route refresh, synchronization, operation, peer group, states and timers) 
+10, 14 
+
+1.11.c Path preference (attributes and best-path)
+13, 14 
+
+1.11.d Route reflector (excluding multiple route reflectors, confederations, dynamic peer)
+10
+
+1.11.e Policies (inbound/outbound filtering, path manipulation) 
+11, 14 
+
+20% 2.0 VPN Technologies 
+2.1 Describe MPLS operations (LSR, LDP, label switching, LSP)
+18 
+
+2.2 Describe MPLS Layer 3 VPN
+18 
+
+2.3 Configure and verify DMVPN (single hub)
+19, 20 
+
+2.3.a GRE/mGRE 
+19 
+
+2.3.b NHRP 
+19 
+
+2.3.c Ipsec
+20 
+
+2.3.d Dynamic neighbor
+19 
+
+2.3.e Spoke-to-spoke 
+19 
+
+
+20% 3.0 Infrastructure Security 
+3.1 Troubleshoot device security using IOS AAA (TACACS+, RADIUS, local database)
+22 
+
+3.2 Troubleshoot router security features
+
+3.2.a IPv4 access control lists (standard, extended, time-based) 
+21 
+
+3.2.b IPv6 traffic filter 
+21 
+
+3.2.c Unicast reverse path forwarding (uRPF)
+22 
+
+3.3 Troubleshoot control plane policing (CoPP) (Telnet, SSH, HTTP(S), SNMP, EIGRP, OSPF, BGP)
+22 
+
+3.4 Describe IPv6 First Hop security features (RA guard, DHCP guard, binding table, ND inspection/snooping, source guard)
+22 
+
+25% 4.0 Infrastructure Services 
+4.1 Troubleshoot device management
+23 
+
+4.1.a Console and VTY 
+23 
+Select COM port
+Cisco devices use the following default values: 9600 baud, 8 data bits, 1 stop bit, and no parity. 
+Are username and password needed to authenticate console? (line console 0)
+
+4.1.b Telnet, HTTP, HTTPS, SSH, SCP 
+23 
+
+Verify Device Support: Remember the command show ip http client all to check if your Cisco device supports HTTP(S) client functionality. 
+Authentication Commands: Know the commands for setting HTTP client username and password (ip http client username and ip http client password) and that these can be overridden by credentials specified in the copy command. 
+Source Interface Configuration: Memorize the ip http client source-interface command for specifying the source IP address for HTTP(S) traffic, useful in overcoming ACL blocks. 
+Troubleshooting Command: Keep in mind the debug ip http client all command for troubleshooting HTTP(S) issues. 
+
+4.1.c (T)FTP 4.2 Troubleshoot SNMP (v2c, v3)
+23 
+
+4.3 Troubleshoot network problems using logging (local, syslog, debugs, conditional debugs, timestamps)
+23 
+
+4.4 Troubleshoot IPv4 and IPv6 DHCP (DHCP client, IOS DHCP server, DHCP relay, DHCP options)
+1
+
+4.5 Troubleshoot network performance issues using IP SLA (jitter, tracking objects, delay, connectivity)
+23 
+
+4.6 Troubleshoot NetFlow (v5, v9, flexible NetFlow)
+23 
+
+4.7 Troubleshoot network problems using Cisco DNA Center assurance (connectivity, monitoring, device health, network health)
+23 
+
+
+
+
+
+GPT Covered topics:
+In the context of MAC addresses, the 7th bit (when counting from the left, starting at 0) is the Universal/Local (U/L) bit. Here's how it actually works:
+    • If the 7th bit is 0, the MAC address is universally administered. This means it was assigned by the manufacturer and is globally unique.
+    • If the 7th bit is 1, the MAC address is locally administered. This indicates that the address was set by a network administrator and is not guaranteed to be globally unique.
+So, in your example, a MAC address of 00:BB:CC:DD:11:22 would actually have the 7th bit set to 0, indicating it is a universally administered address, not a locally administered one.
+EUI-64
+My address 04-7C-16-45-E9-CC
+
+047C:16FF:FE45:E9CC
+067C:16FF:FE45:E9CC < --- EUI-64
+
+
+
+
+
+
+
+
+
+The selected topics from the Cisco Blueprint “Implementing Cisco Enterprise Advanced Routing and Services v1.1” are essential for understanding advanced routing technologies and services:
+    • Administrative Distance: This is a value used by Cisco routers to select the best path when there are multiple routes to the same destination learned via different routing protocols. A lower value indicates a more trusted source of information. You can learn more about administrative distance and its default values in Cisco’s documentation1.
+    • Route Map: Route maps are used to control and modify routing information. They can set attributes, apply tagging, and filter routes during redistribution between routing protocols. Cisco provides detailed guidance on configuring and customizing route maps2.
+    • Loop Prevention Mechanisms: These are techniques used to prevent routing loops. Some common mechanisms include route filtering, tagging, split horizon, and route poisoning. Each of these plays a crucial role in maintaining a stable routing environment. Cisco’s documentation offers insights into loop prevention techniques, especially in MPLS Layer 3 VPN configurations3.
+For an in-depth understanding of these topics, refer to the Cisco documentation sources provided.
+Steps to Configure a Route Map
+    1. Create the Route Map:
+        ◦ Use the route-map command followed by the name of the route map and the permit or deny keyword. The permit or deny keywords define whether the route map will allow or block the routes that match its conditions.
+          arduinoCopy code
+          route-map MY_ROUTE_MAP permit 10
+    2. Define Match Criteria:
+        ◦ Use the match command to specify the criteria that a route must meet to be affected by this route map. Common match criteria include IP addresses, access lists, and interface names.
+          cssCopy code
+          match ip address 101
+    3. Define Set Actions:
+        ◦ Use the set command to specify the actions to be taken on packets or routes that match the criteria. Actions can include modifying the next hop, setting metric values, or changing route tags.
+          pythonCopy code
+          set ip next-hop 192.168.1.1
+    4. Apply the Route Map:
+        ◦ Apply the route map to an interface or in the routing protocol configuration, depending on its intended use. For policy-based routing, apply it to an interface; for route redistribution, apply it in the router configuration mode.
+          goCopy code
+          interface GigabitEthernet0/1
+          ip policy route-map MY_ROUTE_MAP
+        ◦ Or for route redistribution:
+          arduinoCopy code
+          router ospf 1
+          redistribute bgp 65001 route-map MY_ROUTE_MAP
+    5. Repeat for Additional Entries:
+        ◦ Route maps can have multiple entries, each with its own set of match and set commands. Increment the sequence number for each new entry.
+          pythonCopy code
+          route-map MY_ROUTE_MAP permit 20
+          match ip address 102
+          set metric 100
+    6. Save the Configuration:
+        ◦ Save your configuration changes to ensure they persist after a reboot.
+          arduinoCopy code
+          write memory
