@@ -1,3 +1,31 @@
+
+router setup: login vs. login local
+there is a significant difference between the login and login local commands in Cisco IOS, particularly in the context of configuring terminal lines (console, auxiliary, and VTY lines). Both commands are used to enforce authentication, but they differ in how they authenticate users attempting to access the device.
+
+login
+The login command without any additional keywords enables password authentication on the line. It requires users to enter a password specified by the password command under the line configuration.
+When you use login by itself, it tells the device to prompt for a password that has been set directly on the line with the password [password] command.
+This method does not require username information; only the correct line password is needed for access.
+login local
+The login local command enhances security by requiring both a username and a password for authentication, which are defined globally on the device.
+This command tells the device to use the local database of usernames and passwords (configured with the username [username] secret [password] commands in the global configuration mode) for authentication.
+It is particularly useful for managing individual user accounts and allows for different privilege levels for different users.
+
+
+ SW1# show run | section line vty
+ line vty 0 4
+ access-class 1 in
+ password cisco
+ login
+
+R2#show run | section line vty
+line vty 0 4
+ exec-timeout 60 0
+ logging synchronous
+ login local
+ transport input ssh
+
+
 set hostname:
 Router(config)#hostname R1
 
@@ -11,6 +39,26 @@ R1(config-line)#ip ssh version 2
 R1(config-line)#login local
 R2(config-line)#logging synchronous (cli log output does not interfere with existing cli)
 
+validate SSH:
+R2#ssh -l vmware 1.1.1.1
+Password: 
+
+R1>
+
+
+secure copy on cisco device: 
+*Sep 21 02:04:36.546: %SSH-5-ENABLED: SSH 1.99 has been enabled
+ R1(config)#ip ssh version 2
+ R1(config)#ip scp server enable
+ R1(config)#end
+
+ copy flash:c3900-universalk9-mz.SPA.156-3.M6a.bin scp://ENARSI@10.0.3.8/
+ Address or name of remote host [10.0.3.8]?
+ Destination username [ENARSI]?
+ Destination filename [c3900-universalk9-mz.SPA.156-3.M6a.bin]?
+ Writing c3900-universalk9-mz.SPA.156-3.M6a.bin
+ Password:
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Loopback interfaces:
 R1(config)#interface loopback 1 
@@ -26,3 +74,68 @@ R1(config-if)#
 *Mar  1 00:52:58.127: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback1, changed state to up
 R1(config-if)#ip address 1.1.1.1 255.255.255.255
 R1(config-if)#no shut
+
+
+
+Setting up OSPF:
+R3(config)#router ospf 1 
+R3(config-router)#router-id 3.3.3.3
+R3(config-router)#network 192.168.0.0 0.0.0.255 area 0
+R3(config-router)#network 3.3.3.3 0.0.0.0 area 0
+
+neighbor adjacency being established:
+R2(config-router)#network 192.168.0.0 0.0.0.255 area 0
+R2(config-router)#net
+*Feb 21 22:27:20.535: %OSPF-5-ADJCHG: Process 1, Nbr 3.3.3.3 on FastEthernet0/0 from LOADING to FULL, Loading Done
+R3#
+*Mar  1 01:23:09.347: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on FastEthernet2/0 from LOADING to FULL, Loading Done
+
+validate ospf:
+R3#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     2.0.0.0/32 is subnetted, 1 subnets
+O       2.2.2.2 [110/2] via 192.168.0.5, 00:01:34, FastEthernet2/0  <------------ ospf routes
+     3.0.0.0/32 is subnetted, 1 subnets
+C       3.3.3.3 is directly connected, Loopback1
+     192.168.0.0/30 is subnetted, 2 subnets
+O       192.168.0.0 [110/11] via 192.168.0.5, 00:01:34, FastEthernet2/0  <------------ ospf routes
+C       192.168.0.4 is directly connected, FastEthernet2/0
+
+
+
+R3#show ip ospf 1 neighbor 
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/BDR        00:00:33    192.168.0.5     FastEthernet2/0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
